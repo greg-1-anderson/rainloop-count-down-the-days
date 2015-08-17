@@ -59,7 +59,7 @@
 				var daysToGoMsg = pluralizeMessage(daysToGo, "day");
 				var hoursToGoMsg = pluralizeMessage(hoursToGo, "hour");
 				var minutesToGoMsg = pluralizeMessage(minutesToGo, "minute");
-				var secondsToGoMsg = pluralizeMessage(Math.floor(remainingTimeInSeconds), "seconds");
+				var secondsToGoMsg = pluralizeMessage(Math.floor(secondsToGo), "second");
 
 				// Variable granularity: as the date approaches, show more precision.
 				if ((sOccasionGranularity == "Days") && (timeDifferenceInSeconds < ONEDAY)) {
