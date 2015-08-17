@@ -1,5 +1,7 @@
 Adds a daily reminder on the login page to count down the days until your next big event.
 
+![Count Down the Days Screenshot](/CountDownTheDaysScreenshot.png?raw=true "Screenshot of Halloween Countdown")
+
 Configuration:
 
 Name of Occasion: The occasion counting down to (e.g. Halloween)
