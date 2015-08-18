@@ -167,7 +167,7 @@
 				// Fire up our display and keep it updating.
 				var oEl = $('#occasion');
 				if (oEl) {
-					setTimeout(showTimeRemaining, 1000);
+					setTimeout(showTimeRemaining, 100);
 					setInterval(showTimeRemaining, interval);
 				}
 			}
