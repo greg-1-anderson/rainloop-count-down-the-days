@@ -10,7 +10,7 @@ class CountDownTheDaysPlugin extends \RainLoop\Plugins\AbstractPlugin
 		$this->addJs('js/count-down-the-days.js');
 
 		$this->addTemplate('templates/CountDownTheDays.html');
-		$this->addTemplateHook('Login', 'BottomControlGroup', 'CountDownTheDays');
+		$this->addTemplateHook('Login', 'BeforeLogo', 'CountDownTheDays');
 	}
 
 	/**

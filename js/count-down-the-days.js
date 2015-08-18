@@ -59,7 +59,7 @@
 				var daysToGoMsg = pluralizeMessage(daysToGo, "day");
 				var hoursToGoMsg = pluralizeMessage(hoursToGo, "hour");
 				var minutesToGoMsg = pluralizeMessage(minutesToGo, "minute");
-				var secondsToGoMsg = pluralizeMessage(Math.floor(secondsToGo), "second");
+				var secondsToGoMsg = pluralizeMessage(Math.floor(secondsToGo), "seconds");
 
 				// Variable granularity: as the date approaches, show more precision.
 				if ((sOccasionGranularity == "Days") && (timeDifferenceInSeconds < ONEDAY)) {
@@ -71,9 +71,7 @@
 				if ((sOccasionGranularity == "Minutes") && (timeDifferenceInSeconds < (9 * ONEMINUTE))) {
 					sOccasionGranularity = "Seconds";
 					// We have to start calling this function more frequently
-					setInterval(function() {
-						showTimeRemaining();
-					}, 1000 );
+					setInterval(showTimeRemaining, 1000);
 				}
 
 				// Adjust the message parts based on the granularity
@@ -133,7 +131,7 @@
 				// count down (e.g. if the date just passed by)
 				// then hide the pane.
 				if (daysToGo > sOccasionLimit) {
-					$('#occasion').hide("slow");
+					$('#count-down-the-days-div').hide("slow");
 				}
 				else {
 					// Otherwise, set the messages and show the pane.
@@ -144,40 +142,18 @@
 					$('#occasion-minutes').text(minutesToGoMsg);
 					$('#occasion-seconds').text(secondsToGoMsg);
 
-					$('#occasion').slideDown("slow");
+					// Set the background image, if provided.
+					if (sOccasionBackground) {
+						$('#occasion').css('background-position', 'center');
+						$('#occasion').css('background-size', '100%');
+						$('#occasion').css('background-image', 'url(' + sOccasionBackground + ')');
+					}
+
+					$('#count-down-the-days-div').show("slow");
 				}
 			}
 
 			if (sOccasionName && sOccasionDate) {
-
-				var oEl = $('#count-down-the-days-div');
-				if (oEl)
-				{
-					oEl.show();
-				}
-
-				// Template is not working for me, so jam in the HTML for now,
-				// as a stopgap measure.
-				$( "body" ).append( "\
-					<div style='position: absolute; top: 20px; width: 100%;'>\
-						<div id='occasion' class='wrapper loginForm thm-login thm-login-text' style='display: none; margin-left: auto; margin-right: auto; width: 303px; padding: 20px 40px; text-align: center;'>\
-							<div class='thm-login'>\
-								<span id='occasion-name'></span>\
-								<span id='occasion-message'></span>\
-								<span id='occasion-days'></span>\
-								<span id='occasion-hours'></span>\
-								<span id='occasion-minutes'></span>\
-								<span id='occasion-seconds'></span>\
-							</div>\
-						</div>\
-					</div>" );
-
-				// Set the background image, if provided.
-				if (sOccasionBackground) {
-					$('#occasion').css('background-image', 'url(' + sOccasionBackground + ')');
-					$('#occasion').css('background-position', 'center');
-					$('#occasion').css('background-size', '100%');
-				}
 
 				// We will update our display once every minute (so that
 				// hour displays will count down promptly), unless our
@@ -191,12 +167,9 @@
 				// Fire up our display and keep it updating.
 				var oEl = $('#occasion');
 				if (oEl) {
-					showTimeRemaining();
-					setInterval(function() {
-						showTimeRemaining();
-					}, interval );
+					setTimeout(showTimeRemaining, 1000);
+					setInterval(showTimeRemaining, interval);
 				}
-
 			}
 		}
 
