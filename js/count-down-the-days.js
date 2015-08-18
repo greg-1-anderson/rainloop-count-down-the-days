@@ -131,7 +131,7 @@
 				// count down (e.g. if the date just passed by)
 				// then hide the pane.
 				if (daysToGo > sOccasionLimit) {
-					$('#count-down-the-days-div').hide("slow");
+					$('#count-down-the-days-div').slideUp("slow");
 				}
 				else {
 					// Otherwise, set the messages and show the pane.
@@ -149,7 +149,7 @@
 						$('#occasion').css('background-image', 'url(' + sOccasionBackground + ')');
 					}
 
-					$('#count-down-the-days-div').show("slow");
+					$('#count-down-the-days-div').slideDown("slow");
 				}
 			}
 
